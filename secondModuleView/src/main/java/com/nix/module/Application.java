@@ -1,6 +1,7 @@
 package com.nix.module;
 
 
+import com.nix.module.fileWriter.CustomFileWriter;
 import com.nix.module.util.DatesUtil;
 import com.nix.module.util.DijkstraAlgorithm.DijkstraAlgorithm;
 import com.nix.module.util.DijkstraAlgorithm.GraphBuilder;
@@ -11,7 +12,8 @@ import java.util.*;
 
 public class Application {
     private static final String INPUT_TXT = "input.txt";
-
+    private static final String OUTPUT_TXT = "output.txt";
+    
     public static void main(String[] args) {
         List<String> dates = Arrays.asList("2021-04-05", "05/04/2022", "04-05-2023", "05.04.2024");
         List<String> datesInCorrectFormat = DatesUtil.getYearsInCorrectFormat(dates);
@@ -34,6 +36,9 @@ public class Application {
                 costs.append(" ").append(DijkstraAlgorithm.findCheapestWay(graph.getMatrixOfCosts(), path[i][0], path[i][1]));
 
             }
+
+            CustomFileWriter fileWriter = new CustomFileWriter(costs.toString(), OUTPUT_TXT);
+            fileWriter.writeIntoFile();
 
         } catch (Exception e) {
             e.printStackTrace();
