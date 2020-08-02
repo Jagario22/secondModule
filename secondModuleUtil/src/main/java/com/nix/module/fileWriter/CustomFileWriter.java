@@ -14,9 +14,6 @@ public class CustomFileWriter implements FileWriter {
         file = new File(path);
     }
 
-    public CustomFileWriter() {
-    }
-
     @Override
     public void writeIntoFile() {
 

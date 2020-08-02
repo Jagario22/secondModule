@@ -11,15 +11,14 @@ import java.util.*;
 @Slf4j
 public class GraphBuilder {
     private static int[][] matrix;
-    private static int numOfPathsToFind;
     private static int[][] pathsToFind;
 
     public static WeightedGraph build(String inputFile) throws Exception {
-        int n, p;
+        int n, p, numOfPathsToFind;
         String line;
-        String[] path;
+        String[] paths;
         File file = new File(inputFile);
-        Map<String, Integer> namesOfCities = new HashMap<>();
+        Map<String, Integer> nameOfCities = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
             if (file.length() == 0)
@@ -36,7 +35,7 @@ public class GraphBuilder {
                 if (line == null)
                     throw new Exception("Uncorrected data");
                 log.debug("name of city: " + line);
-                namesOfCities.put(line, i);
+                nameOfCities.put(line, i);
 
                 line = reader.readLine();
                 if (line == null) {
@@ -50,9 +49,9 @@ public class GraphBuilder {
                     if (line == null) {
                         throw new Exception("Uncorrected data");
                     }
-                    log.debug("path: " + line);
-                    path = line.split(" ");
-                    matrix[i][Integer.parseInt(path[0]) - 1] = Integer.parseInt(path[1]);
+                    log.debug("paths: " + line);
+                    paths = line.split(" ");
+                    matrix[i][Integer.parseInt(paths[0]) - 1] = Integer.parseInt(paths[1]);
                 }
             }
 
@@ -68,17 +67,17 @@ public class GraphBuilder {
                 if (line == null)
                     throw new Exception("Uncorrected data");
 
-                log.debug("path to find: " + line);
-                path = line.replace("-", " ").split(" ");
-                pathsToFind[i][0] = namesOfCities.get(path[0]);
-                pathsToFind[i][1] = namesOfCities.get(path[1]);
+                log.debug("paths to find: " + line);
+                paths = line.replace("-", " ").split(" ");
+                pathsToFind[i][0] = nameOfCities.get(paths[0]);
+                pathsToFind[i][1] = nameOfCities.get(paths[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         log.debug("matrix: " + Arrays.deepToString(matrix));
-        return new WeightedGraph(new ArrayList<>(namesOfCities.keySet()), matrix);
+        return new WeightedGraph(new ArrayList<>(nameOfCities.keySet()), matrix);
     }
 
     //getters

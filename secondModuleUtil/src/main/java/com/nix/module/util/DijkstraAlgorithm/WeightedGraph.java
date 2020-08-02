@@ -3,15 +3,15 @@ package com.nix.module.util.DijkstraAlgorithm;
 import java.util.List;
 
 public class WeightedGraph {
-    private List<String> namesOfNodes;
-    private int[][] matrixOfCosts;
+    private List<String> nameOfNodes;
+    private int[][] matrix;
 
-    public WeightedGraph(List<String> namesOfNodes, int[][] matrixOfCosts) {
-        this.namesOfNodes = namesOfNodes;
-        this.matrixOfCosts = matrixOfCosts;
+    public WeightedGraph(List<String> nameOfNodes, int[][] matrix) {
+        this.nameOfNodes = nameOfNodes;
+        this.matrix = matrix;
     }
 
-    public int[][] getMatrixOfCosts() {
-        return matrixOfCosts;
+    public int[][] getMatrix() {
+        return matrix;
     }
 }

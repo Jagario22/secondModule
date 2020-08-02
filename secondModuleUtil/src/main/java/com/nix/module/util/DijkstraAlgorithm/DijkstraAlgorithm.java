@@ -11,11 +11,12 @@ public class DijkstraAlgorithm {
         int[] costs = new int[matrix.length];
         boolean[] x = new boolean[matrix.length];
         int start;
+        int min;
 
         for (int i = 0; i < matrix.length; i++) {
             if (i != first) {
-                Arrays.fill(costs,Integer.MAX_VALUE);
-                Arrays.fill(x,false);
+                Arrays.fill(costs, Integer.MAX_VALUE);
+                Arrays.fill(x, false);
 
                 costs[first] = 0;
                 x[first] = true;
@@ -30,7 +31,7 @@ public class DijkstraAlgorithm {
                         }
                     }
 
-                    int min = Integer.MAX_VALUE;
+                    min = Integer.MAX_VALUE;
                     for (int j = 0; j < matrix.length; j++) {
                         if (!x[j] && costs[j] < min) {
                             start = j;
@@ -44,7 +45,7 @@ public class DijkstraAlgorithm {
                 }
             }
         }
-        log.debug("Costs of shortest way for path " + (first+1) + "-" +  (last+1) + ": " + costs[last]);
+        log.debug("Costs of shortest way for path " + (first + 1) + "-" + (last + 1) + ": " + costs[last]);
         return costs[last];
     }
 }
