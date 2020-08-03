@@ -23,7 +23,7 @@ public class Application {
         datesInCorrectFormat.forEach(System.out::println);
         System.out.println();
 
-        List<String> names = Arrays.asList("Anna", "Sonya", "Erica", "Anna", "Adam", "Adam", "Sonya", "Clara");
+        List<String> names = Arrays.asList("Anna", "Sonya", "Erica", "Anna", "Adam", "Sonya", "Erica", "Clara");
         String uniqueName = StringUtil.getFirstUniqueString(names);
         System.out.println("Names: " + names.toString());
         System.out.println("Unique name: " + uniqueName + "\n");

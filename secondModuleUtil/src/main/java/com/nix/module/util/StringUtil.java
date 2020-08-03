@@ -3,18 +3,27 @@ package com.nix.module.util;
 import java.util.*;
 
 public class StringUtil {
-    public static String getFirstUniqueString(List<String> names) {
-        Set<String> uniqueNames = new HashSet<>();
-        List<String> result = new ArrayList<>();
+    public static String getFirstUniqueString(List<String> list) {
+        Map<String, Integer> uniqueStrings = new HashMap<>();
+        int min = Integer.MAX_VALUE;
+        String result = "";
 
-        for (String val : names) {
-            if (uniqueNames.add(val)) {
-                result.add(val);
+        for (int i = list.size() - 1; i >= 0; i--) {
+            String currentString = list.get(i);
+            if (!uniqueStrings.containsKey(list.get(i))) {
+                uniqueStrings.put(currentString, i);
             } else {
-                result.remove(val);
+                uniqueStrings.remove(list.get(i));
             }
         }
 
-        return result.get(0);
+
+        for (Map.Entry<String, Integer> entry : uniqueStrings.entrySet()) {
+            if (entry.getValue() < min) {
+                min = entry.getValue();
+                result = entry.getKey();
+            }
+        }
+        return result;
     }
 }
